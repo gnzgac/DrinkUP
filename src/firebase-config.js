@@ -2,7 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore"
+import { getDatabase } from "firebase/database";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,6 +12,7 @@ import { getFirestore } from "firebase/firestore"
 const firebaseConfig = {
   apiKey: "AIzaSyC00zNhB6X2a7AlVEffDU5j0TMLFKk3zmQ",
   authDomain: "drinkup-cs145.firebaseapp.com",
+  databaseURL: "https://drinkup-cs145-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "drinkup-cs145",
   storageBucket: "drinkup-cs145.appspot.com",
   messagingSenderId: "123718921446",
@@ -22,4 +24,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-export const db = getFirestore(app);
+
+// Initialize Realtime Database and get a reference to the service
+export const db = getDatabase(app);
