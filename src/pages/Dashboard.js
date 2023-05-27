@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -9,8 +9,26 @@ import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 
+// Database
+import { db, auth } from '../firebase-config';
+import { getDatabase, ref, child, get } from "firebase/database";
+
 function Dashboard() {
 
+  const [intakeData, setIntakeData] = useState({});
+  const dbRef = ref(db);
+  
+  // prints the Intake amount of testAccount1
+  get(child(dbRef, `testAccount1/Intake`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      setIntakeData(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+  
   function CircularProgressWithLabel(props) {
     return (
       <Box sx={{ position: 'relative', display: 'inline-flex' }}>
@@ -49,6 +67,7 @@ function Dashboard() {
               <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
                 INTAKE FOR THE DAY
               </Typography>
+              <Typography>{intakeData} mL</Typography>
               {CircularProgressWithLabel({value:80})}
             </CardContent>
           </Card>
