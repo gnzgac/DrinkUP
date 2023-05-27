@@ -15,7 +15,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 
 function Dashboard() {
 
-  const [intakeData, setIntakeData] = useState({});
+  const [intakeData, setIntakeData] = useState();
   const dbRef = ref(db);
   
   // prints the Intake amount of testAccount1

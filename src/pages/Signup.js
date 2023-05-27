@@ -1,16 +1,17 @@
 import { React } from 'react';
 import { auth } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-function Login() {
+function Signup() {
 
-    function logIn(email,password){
-        signInWithEmailAndPassword(auth, email, password)
+    function signUp(email,password){
+        createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             localStorage.setItem("isAuth", "true");
-            localStorage.setItem("userEmail",user.email);
+            localStorage.setItem("userData", user);
+            // signed up and logged in
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -22,11 +23,11 @@ function Login() {
 
     var email = "testing@gmail.com"
     var password = "testingpass"
-    logIn(email,password)
+    signUp(email,password)
 
     return (
         <div>test</div>
     )
 }
 
-export default Login
+export default Signup

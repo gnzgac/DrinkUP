@@ -11,6 +11,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 //PAGES
 import Login from './pages/Login.js';
 import Logout from './pages/Logout';
+import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import NavbarDefault from './pages/components/navbarDefault.js';
 
@@ -44,8 +45,9 @@ function App() {
         {/* <NavbarDefault /> */}
         <Router>
             <Routes>
-            <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
+            <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Dashboard />} exact />
             {/* element={<DBAdmin isAuth={isAuth}/>} */}
           </Routes>
