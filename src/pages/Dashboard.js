@@ -1,25 +1,52 @@
-import {React, useState} from 'react';
+import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import NavbarDefault from "./components/navbarDefault";
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
-import CircularProgress from '@mui/material/CircularProgress';
+import {CircularProgress, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material';
 
 // Database
 import { db, auth } from '../firebase-config';
 import { getDatabase, ref, child, get } from "firebase/database";
 
-function Dashboard() {
+let theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Segoe UI', 
+      'sans-serif',
+    ].join(','),
+  }
+});
+
+theme = responsiveFontSizes(theme);
+
+var loading = true
+
+function Dashboard({ isAuth }) {
 
   const [intakeData, setIntakeData] = useState();
   const dbRef = ref(db);
+
+  let navigate = useNavigate();
+    
+  // USER AUTHENTICATION
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("isAuth");
+
+    if (loggedInUser === "true") { 
+      loading = false;
+    }
+    else{
+      navigate("/Login");
+    }
+  },[])
   
   // prints the Intake amount of testAccount1
-  get(child(dbRef, `testAccount1/Intake`)).then((snapshot) => {
+  get(child(dbRef, `testing/Intake`)).then((snapshot) => {
     if (snapshot.exists()) {
       setIntakeData(snapshot.val());
     } else {

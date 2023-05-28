@@ -48,8 +48,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<Dashboard />} exact />
-            {/* element={<DBAdmin isAuth={isAuth}/>} */}
+            <Route path="/" element={<Dashboard isAuth={isAuth}/>} exact />
+        
           </Routes>
         </Router>
     </div>
