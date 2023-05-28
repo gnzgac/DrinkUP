@@ -28,7 +28,8 @@ var loading = true
 
 function Dashboard({ isAuth }) {
 
-  const [intakeData, setIntakeData] = useState();
+  const [intakeDay, setIntakeDay] = useState();
+  const [intakeWeek, setIntakeWeek] = useState();
   const dbRef = ref(db);
 
   let navigate = useNavigate();
@@ -45,10 +46,10 @@ function Dashboard({ isAuth }) {
     }
   },[])
   
-  // prints the Intake amount of testAccount1
+  // prints the IntakeDay amount of testing
   get(child(dbRef, `testing/Intake`)).then((snapshot) => {
     if (snapshot.exists()) {
-      setIntakeData(snapshot.val());
+      setIntakeDay(snapshot.val());
     } else {
       console.log("No data available");
     }
@@ -56,6 +57,17 @@ function Dashboard({ isAuth }) {
     console.error(error);
   });
   
+  // prints the IntakeWeek amount of testing
+  get(child(dbRef, `testing/WeeklyTotal`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      setIntakeWeek(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+
   function CircularProgressWithLabel(props) {
     return (
       <Box sx={{ position: 'relative', display: 'inline-flex' }}>
@@ -94,7 +106,7 @@ function Dashboard({ isAuth }) {
               <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
                 INTAKE FOR THE DAY
               </Typography>
-              <Typography>{intakeData} mL</Typography>
+              <Typography>{intakeDay} mL</Typography>
               {CircularProgressWithLabel({value:80})}
             </CardContent>
           </Card>
@@ -107,7 +119,7 @@ function Dashboard({ isAuth }) {
               <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
                 INTAKE FOR THE WEEK
               </Typography>
-              <Typography>{intakeData} mL</Typography>
+              <Typography>{intakeWeek} mL</Typography>
               {CircularProgressWithLabel({value:80})}
             </CardContent>
           </Card>
