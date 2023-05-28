@@ -73,6 +73,19 @@ function Dashboard() {
           </Card>
         </Grid>
       </Box>
+      <Box style={{ display:'flex', justifyContent:'center' }}>
+        <Grid sx={{mt:5, mb:5}}>
+          <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
+            <CardContent align = "center">
+              <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
+                INTAKE FOR THE WEEK
+              </Typography>
+              <Typography>{intakeData} mL</Typography>
+              {CircularProgressWithLabel({value:80})}
+            </CardContent>
+          </Card>
+        </Grid>
+      </Box>
     </div>
   )
 }
