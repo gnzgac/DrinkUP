@@ -107,8 +107,8 @@ function Dashboard({ isAuth }) {
               <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
                 INTAKE FOR THE WEEK
               </Typography>
-              <Typography>{intakeData} mL</Typography>
-              {CircularProgressWithLabel({value:80})}
+              <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{intakeData} mL</Typography>
+              {CircularProgressWithLabel({value:(intakeData/2500)*100})}
             </CardContent>
           </Card>
         </Grid>
