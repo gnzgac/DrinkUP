@@ -109,7 +109,7 @@ function Login({ setIsAuth }) {
                         <CardContent>
                         {instant ?  <InstantMessage sev = {severity} message = {message} /> : `` }
                         <Typography align = "center" fontWeight="bold" component="h1" variant="h5" sx={{ mt: 3, mb:5 }}>
-                            LOGIN TO YOUR DRINKUP ACCOUNT
+                            LOGIN TO YOUR DrinkUP ACCOUNT
                         </Typography>
                         <form>
                             <Grid container spacing={1}>
