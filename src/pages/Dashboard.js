@@ -19,7 +19,7 @@ function Dashboard() {
   const dbRef = ref(db);
   
   // prints the Intake amount of testAccount1
-  get(child(dbRef, `testAccount1/Intake`)).then((snapshot) => {
+  get(child(dbRef, `testing/Intake`)).then((snapshot) => {
     if (snapshot.exists()) {
       setIntakeData(snapshot.val());
     } else {
