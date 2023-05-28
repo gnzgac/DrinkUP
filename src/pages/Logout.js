@@ -6,16 +6,16 @@ function Logout() {
     let navigate = useNavigate();
 
     useEffect(()=>{
+        localStorage.setItem("isAuth", "false");
+
         const auth = getAuth();
         signOut(auth).then(() => {
-            localStorage.setItem("isAuth", "false");
-            localStorage.removeItem("userEmail");
-            // Sign-out successful.
+        // Sign-out successful.
         }).catch((error) => {
-            // An error happened.
+        // An error happened.
         });
         
-        // navigate("/login");
+        navigate("/Login");
     }, [])
 
     return (
