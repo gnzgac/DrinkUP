@@ -21,6 +21,8 @@ import ListItem from '@mui/material/ListItem';
 
 const NavbarDefault = (props) => {
   const [open, setOpen] = useState(false);
+  const loggedInUser = localStorage.getItem("isAuth");
+
   return (
     <AppBar position='static' style={{ background: '#F8F9FA', backgroundColor: "#146C94"}}>
       <Container sx={{ p:2 }} maxWidth="xl" className="font-link">
@@ -44,8 +46,10 @@ const NavbarDefault = (props) => {
             <Hidden lgDown>
               <Stack direction="row" spacing={3}>
                 <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/" style={{textDecoration: 'none', color: "white", fontFamily: "Segoe UI"}}>Home</a></Button>
-                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/Logout" style={{textDecoration: 'none', color: "white", fontFamily: "Segoe UI"}}>Logout</a></Button>
-              </Stack >
+                {(loggedInUser === "true") ?
+                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/Logout" style={{textDecoration: 'none', color: "white", fontFamily: "Segoe UI"}}>Logout</a></Button>:
+                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/Login" style={{textDecoration: 'none', color: "white", fontFamily: "Segoe UI"}}>Login</a></Button>}
+                </Stack >
             </Hidden>
             <Hidden lgUp>
               <IconButton>
@@ -65,7 +69,9 @@ const NavbarDefault = (props) => {
           <Divider />
           <List>
             <ListItem><Button variant="text" sx={{":hover": {color:"#7B1113"}}}><a href="/" style={{textDecoration: 'none', color: "black"}}>Home</a></Button></ListItem>
-            <ListItem><Button variant="text" sx={{":hover": {color:"#7B1113"}}}><a href="/Logout" style={{textDecoration: 'none', color: "black"}}>Logout</a></Button></ListItem>
+            {(loggedInUser === "true") ?
+                <ListItem><Button variant="text" sx={{":hover": {color:"#7B1113"}}}><a href="/Logout" style={{textDecoration: 'none', color: "black"}}>Logout</a></Button></ListItem>:
+                <ListItem><Button variant="text" sx={{":hover": {color:"#7B1113"}}}><a href="/Login" style={{textDecoration: 'none', color: "black"}}>Login</a></Button></ListItem>}
           </List>
         </SwipeableDrawer>
       </Hidden>
