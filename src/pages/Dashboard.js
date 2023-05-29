@@ -26,7 +26,7 @@ theme = responsiveFontSizes(theme);
 
 var loading = true
 
-function Dashboard({ isAuth }) {
+function Dashboard() {
 
   const [intakeDay, setIntakeDay] = useState();
   const [intakeWeek, setIntakeWeek] = useState();

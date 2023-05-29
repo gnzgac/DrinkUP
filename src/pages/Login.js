@@ -28,7 +28,7 @@ let theme = createTheme({
 
 theme = responsiveFontSizes(theme);
 
-function Login({ setIsAuth }) {
+function Login() {
 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setPassword] = useState("");
@@ -78,7 +78,7 @@ function Login({ setIsAuth }) {
     }
 
     const logoStyle = { width: '70%', height: 'auto', maxWidth: '500px', maxHeight: '500px', display: 'block', marginLeft: 'auto', marginRight: 'auto' };
-    const buttonStyle = { mt:1, mb:2, bgcolor: '#7B1113', ":hover": {bgcolor: "#5A0C0E", color: 'white'}};
+    const buttonStyle = { mt:1, mb:2, bgcolor: '#146C94', ":hover": {bgcolor: "#AFD3E2", color: 'white'}};
     const cardStyle = { maxWidth: 600, padding: "10px 5px", margin: "0 auto", justifyContent:'center' };
 
     // var email = "testing@gmail.com"
@@ -183,7 +183,11 @@ function Login({ setIsAuth }) {
                                 >
                                 Submit
                                 </Button>
+                                <Typography component="h1" variant="caption" align="center" sx={{ mt: 1, mb: 1 }} fontFamily="Segoe UI">
+                                    Don't have an account yet? <a href= "/Signup" style={{color: '#146C94'}}>Sign up here.</a>
+                                </Typography>
                             </Grid>
+                            
                             </Grid>
                         </form>
                         </CardContent>

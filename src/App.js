@@ -26,7 +26,6 @@ const theme = createTheme({
 });
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
 
   // prints the Intake amount of testAccount1
   const dbRef = ref(db);
@@ -48,7 +47,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<Dashboard isAuth={isAuth}/>} exact />
+            <Route path="/" element={<Dashboard />} exact />
         
           </Routes>
         </Router>

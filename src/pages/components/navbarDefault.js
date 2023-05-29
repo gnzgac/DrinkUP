@@ -22,7 +22,7 @@ import ListItem from '@mui/material/ListItem';
 const NavbarDefault = (props) => {
   const [open, setOpen] = useState(false);
   return (
-    <AppBar position='static' style={{ background: '#F8F9FA', backgroundColor: "#0A324F"}}>
+    <AppBar position='static' style={{ background: '#F8F9FA', backgroundColor: "#146C94"}}>
       <Container sx={{ p:2 }} maxWidth="xl" className="font-link">
         <Toolbar>
             <IconButton size='small' edge='start' variant="contained" aria-label='logo'>
