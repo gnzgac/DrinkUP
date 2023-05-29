@@ -23,13 +23,13 @@ let theme = createTheme({
 });
 
 theme = responsiveFontSizes(theme);
-
+var WeeklyTotal = 0;
 var loading = true
 
 function Dashboard() {
 
   const [intakeDay, setIntakeDay] = useState();
-  const [intakeWeek, setIntakeWeek] = useState();
+  const [intakeWeek, setIntakeWeek] = useState(0);
   const dbRef = ref(db);
 
   let navigate = useNavigate();
@@ -40,33 +40,38 @@ function Dashboard() {
 
     if (loggedInUser === "true") { 
       loading = false;
+      fetchData();
     }
     else{
       navigate("/Login");
     }
   },[])
-  
-  // prints the IntakeDay amount of testing
-  get(child(dbRef, `testing/Intake`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      setIntakeDay(snapshot.val());
-    } else {
-      console.log("No data available");
+
+  async function fetchData() {
+    // prints the IntakeDay amount of testing
+    get(child(dbRef, `testing/Intake`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setIntakeDay(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    //gets and prints the IntakeWeek amount of testing
+    for (let i = 0; i < 7; i++) {
+      get(child(dbRef, `testing/Days/${i}/Intake`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          WeeklyTotal = WeeklyTotal + snapshot.val()
+          setIntakeWeek(WeeklyTotal)
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
     }
-  }).catch((error) => {
-    console.error(error);
-  });
-  
-  // prints the IntakeWeek amount of testing
-  get(child(dbRef, `testing/WeeklyTotal`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      setIntakeWeek(snapshot.val());
-    } else {
-      console.log("No data available");
-    }
-  }).catch((error) => {
-    console.error(error);
-  });
+  }
 
   function CircularProgressWithLabel(props) {
     return (
@@ -120,7 +125,7 @@ function Dashboard() {
                 INTAKE FOR THE WEEK
               </Typography>
               <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{intakeWeek} mL</Typography>
-              {CircularProgressWithLabel({value:(intakeWeek/2500)*100})}
+              {CircularProgressWithLabel({value:(intakeWeek/(2500*7))*100})}
             </CardContent>
           </Card>
         </Grid>

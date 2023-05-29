@@ -27,18 +27,6 @@ const theme = createTheme({
 
 function App() {
 
-  // prints the Intake amount of testAccount1
-  const dbRef = ref(db);
-  get(child(dbRef, `testAccount1/Intake`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val());
-    } else {
-      console.log("No data available");
-    }
-  }).catch((error) => {
-    console.error(error);
-  });
-
   return (
       <div fontFamily='Helvetica'>
         {/* <NavbarDefault /> */}
