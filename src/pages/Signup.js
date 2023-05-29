@@ -5,20 +5,35 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function Signup() {
 
-    function signUp(email,password){
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            localStorage.setItem("isAuth", "true");
-            localStorage.setItem("userData", user);
-            // signed up and logged in
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+    // function signUp(email,password){
+    //     createUserWithEmailAndPassword(auth, email, password)
+    //     .then((userCredential) => {
+    //         const user = userCredential.user;
+    //         localStorage.setItem("isAuth", "true");
+    //         localStorage.setItem("userEmail",user.email);           
+    //          // signed up and logged in
+    //     })
+    //     .catch((error) => {
+    //         const errorCode = error.code;
+    //         const errorMessage = error.message;
     
-            console.log(error.message)
-        })
+    //         console.log(errorMessage)
+    //     })
+    // }
+
+    const signUp = async () => {
+        try {
+          const user = await createUserWithEmailAndPassword(
+            auth, 
+            email, 
+            password
+          );
+          localStorage.setItem("isAuth", "true");
+          localStorage.setItem("userEmail",user.email);     
+          navigate("/");
+        } catch (error) {
+          return error;
+        }
     }
 
     var email = "testing@gmail.com"
