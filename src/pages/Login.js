@@ -77,8 +77,7 @@ function Login() {
         }
     }
 
-    const logoStyle = { width: '70%', height: 'auto', maxWidth: '500px', maxHeight: '500px', display: 'block', marginLeft: 'auto', marginRight: 'auto' };
-    const buttonStyle = { mt:1, mb:2, bgcolor: '#146C94', ":hover": {bgcolor: "#AFD3E2", color: 'white'}};
+    const buttonStyle = { mt:1, mb:2, bgcolor: '#146C94', ":hover": {bgcolor: "#19A7CE", color: 'white'}};
     const cardStyle = { maxWidth: 600, padding: "10px 5px", margin: "0 auto", justifyContent:'center' };
 
     // var email = "testing@gmail.com"
