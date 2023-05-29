@@ -30,6 +30,7 @@ function Dashboard() {
 
   const [intakeDay, setIntakeDay] = useState();
   const [intakeWeek, setIntakeWeek] = useState(0);
+  const [intakePerDay, setIntakePerDay] = useState([])
   const dbRef = ref(db);
 
   let navigate = useNavigate();
@@ -48,7 +49,7 @@ function Dashboard() {
   },[])
 
   async function fetchData() {
-    // prints the IntakeDay amount of testing
+    //Intake for the Day
     get(child(dbRef, `testing/Intake`)).then((snapshot) => {
       if (snapshot.exists()) {
         setIntakeDay(snapshot.val());
@@ -58,11 +59,13 @@ function Dashboard() {
     }).catch((error) => {
       console.error(error);
     });
-    //gets and prints the IntakeWeek amount of testing
+
+    //Weekly Data
     for (let i = 0; i < 7; i++) {
-      get(child(dbRef, `testing/Days/${i}/Intake`)).then((snapshot) => {
+      get(child(dbRef, `testing/Days/${i}`)).then((snapshot) => {
         if (snapshot.exists()) {
-          WeeklyTotal = WeeklyTotal + snapshot.val()
+          setIntakePerDay((intakePerDay) => [...intakePerDay,snapshot.val()]);
+          WeeklyTotal = WeeklyTotal + snapshot.val().Intake
           setIntakeWeek(WeeklyTotal)
         } else {
           console.log("No data available");
@@ -72,7 +75,7 @@ function Dashboard() {
       });
     }
   }
-
+  
   function CircularProgressWithLabel(props) {
     return (
       <Box sx={{ position: 'relative', display: 'inline-flex' }}>
@@ -111,7 +114,7 @@ function Dashboard() {
               <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
                 INTAKE FOR THE DAY
               </Typography>
-              <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{intakeDay} mL</Typography>
+              <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{Math.trunc(intakeDay)} mL</Typography>
               {CircularProgressWithLabel({value:(intakeDay/2500)*100})}
             </CardContent>
           </Card>
@@ -124,7 +127,7 @@ function Dashboard() {
               <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
                 INTAKE FOR THE WEEK
               </Typography>
-              <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{intakeWeek} mL</Typography>
+              <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{Math.trunc(intakeWeek)} mL</Typography>
               {CircularProgressWithLabel({value:(intakeWeek/(2500*7))*100})}
             </CardContent>
           </Card>
