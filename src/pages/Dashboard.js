@@ -71,7 +71,7 @@ function Dashboard() {
   function CircularProgressWithLabel(props) {
     return (
       <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-        <CircularProgress sx = {{color: '#0A324F'}} size = "5rem" variant="determinate" {...props} />
+        <CircularProgress sx = {{color: '#146C94'}} size = "5rem" variant="determinate" {...props} />
         <Box
           sx={{
             top: 0,
