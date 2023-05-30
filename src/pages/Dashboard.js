@@ -129,8 +129,10 @@ function Dashboard() {
             </Box>
             <Box style={{ display:'flex', justifyContent:'center' }}>
               <Grid sx={{mt:5, mb:5}}>
-                <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
-                  <BarChart />
+                <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 500, minHeight: 290, padding: "10px 5px", margin: "0 auto" }}>
+                  <CardContent align = "center">
+                    <BarChart />
+                  </CardContent>
                 </Card>
               </Grid>
             </Box>
