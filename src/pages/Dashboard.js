@@ -13,16 +13,9 @@ import {CircularProgress, ThemeProvider, createTheme, responsiveFontSizes } from
 import { db, auth } from '../firebase-config';
 import { getDatabase, ref, child, get } from "firebase/database";
 
-let theme = createTheme({
-  typography: {
-    fontFamily: [
-      'Segoe UI', 
-      'sans-serif',
-    ].join(','),
-  }
-});
+// Styling
+import styles from './Dashboard.module.css';
 
-theme = responsiveFontSizes(theme);
 var WeeklyTotal = 0;
 var loading = true
 
@@ -105,34 +98,54 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      <NavbarDefault /> 
-      <Box style={{ display:'flex', justifyContent:'center' }}>
-        <Grid sx={{mt:5, mb:5}}>
-          <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
-            <CardContent align = "center">
-              <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
-                INTAKE FOR THE DAY
-              </Typography>
-              <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{Math.trunc(intakeDay)} mL</Typography>
-              {CircularProgressWithLabel({value:(intakeDay/2500)*100})}
-            </CardContent>
-          </Card>
-        </Grid>
-      </Box>
-      <Box style={{ display:'flex', justifyContent:'center' }}>
-        <Grid sx={{mt:5, mb:5}}>
-          <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
-            <CardContent align = "center">
-              <Typography fontWeight="bold" component="h1" variant="h5" fontFamily="Segoe UI" sx = {{mb:2}} >
-                INTAKE FOR THE WEEK
-              </Typography>
-              <Typography fontWeight="bold" fontFamily="Segoe UI" sx = {{mb:2}}>{Math.trunc(intakeWeek)} mL</Typography>
-              {CircularProgressWithLabel({value:(intakeWeek/(2500*7))*100})}
-            </CardContent>
-          </Card>
-        </Grid>
-      </Box>
+    <div className={styles['container']}>
+      <NavbarDefault />
+      <div className={styles['content']}>
+        <div>
+          <Box style={{ display:'flex', justifyContent:'center' }}>
+            <Grid sx={{mt:5, mb:5}}>
+              <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
+                <CardContent align = "left">
+                  <Typography fontWeight="bold" component="h1" variant="h5">
+                    WELCOME, testing.
+                  </Typography>
+                  <Typography fontWeight="regular" fontStyle='italic' component="paragraph" sx = {{mb:2}} >
+                    You're doing great!
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            </Box>
+        </div>
+        <div>
+          <Box style={{ display:'flex', justifyContent:'center' }}>
+            <Grid sx={{mt:5, mb:5}}>
+              <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
+                <CardContent align = "center">
+                  <Typography fontWeight="bold" component="h1" variant="h5" sx = {{mb:2}} >
+                    INTAKE FOR THE DAY
+                  </Typography>
+                  <Typography fontWeight="bold" sx = {{mb:2}}>{Math.trunc(intakeDay)} mL</Typography>
+                  {CircularProgressWithLabel({value:(intakeDay/2500)*100})}
+                </CardContent>
+              </Card>
+            </Grid>
+            </Box>
+            <Box style={{ display:'flex', justifyContent:'center' }}>
+            <Grid sx={{mt:5, mb:5}}>
+              <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
+                <CardContent align = "center">
+                  <Typography fontWeight="bold" component="h1" variant="h5" sx = {{mb:2}} >
+                    INTAKE FOR THE WEEK
+                  </Typography>
+                  <Typography fontWeight="bold" sx = {{mb:2}}>{Math.trunc(intakeWeek)} mL</Typography>
+                  {CircularProgressWithLabel({value:(intakeWeek/(2500*7))*100})}
+                </CardContent>
+              </Card>
+            </Grid>
+          </Box>
+        </div>
+      </div>
     </div>
   )
 }

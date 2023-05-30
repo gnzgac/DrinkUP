@@ -40,15 +40,15 @@ const NavbarDefault = (props) => {
               style={{ color: "white"}} sx={{flexGrow:1}}
             >
               <Box component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
-              <a href="/" style={{color: "white", textDecoration: "none", fontFamily:"Segoe UI"}}>DrinkUP</a>
+              <a href="/" style={{color: "white", textDecoration: "none"}}>DrinkUP</a>
               </Box>
             </Typography>
             <Hidden lgDown>
               <Stack direction="row" spacing={3}>
-                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/" style={{textDecoration: 'none', color: "white", fontFamily: "Segoe UI"}}>Home</a></Button>
+                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/" style={{textDecoration: 'none', color: "white"}}>Home</a></Button>
                 {(loggedInUser === "true") ?
-                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/Logout" style={{textDecoration: 'none', color: "white", fontFamily: "Segoe UI"}}>Logout</a></Button>:
-                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/Login" style={{textDecoration: 'none', color: "white", fontFamily: "Segoe UI"}}>Login</a></Button>}
+                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/Logout" style={{textDecoration: 'none', color: "white"}}>Logout</a></Button>:
+                <Button variant="text" sx={{":hover": {color:"#16241f"}}}><a href="/Login" style={{textDecoration: 'none', color: "white"}}>Login</a></Button>}
                 </Stack >
             </Hidden>
             <Hidden lgUp>
