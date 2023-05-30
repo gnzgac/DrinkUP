@@ -8,6 +8,7 @@ import NavbarDefault from "./components/navbarDefault";
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import {CircularProgress, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material';
+import BarChart from "./components/BarChart";
 
 // Database
 import { db, auth } from '../firebase-config';
@@ -16,6 +17,16 @@ import { getDatabase, ref, child, get } from "firebase/database";
 // Styling
 import styles from './Dashboard.module.css';
 
+let theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Segoe UI', 
+      'sans-serif',
+    ].join(','),
+  }
+});
+
+theme = responsiveFontSizes(theme);
 var WeeklyTotal = 0;
 var loading = true
 
@@ -115,6 +126,13 @@ function Dashboard() {
                 </CardContent>
               </Card>
             </Grid>
+            </Box>
+            <Box style={{ display:'flex', justifyContent:'center' }}>
+              <Grid sx={{mt:5, mb:5}}>
+                <Card sx={{boxShadow:5, mb:3}} style={{ minWidth: 400, padding: "10px 5px", margin: "0 auto" }}>
+                  <BarChart />
+                </Card>
+              </Grid>
             </Box>
         </div>
         <div>

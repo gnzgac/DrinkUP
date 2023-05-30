@@ -69,8 +69,6 @@ function Login() {
           );
           localStorage.setItem("isAuth", "true");
           localStorage.setItem("userEmail",loginEmail)
-          //setIsAuth("true");
-          console.log("panget")
           navigate("/");
         } catch (error) {
           return error;
