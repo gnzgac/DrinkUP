@@ -51,6 +51,10 @@ function Dashboard() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("isAuth");
 
+    // // DISPLAYS USER'S IDENTIFIER
+    // const user = auth.currentUser;
+    // console.log(user.displayName);
+
     if (loggedInUser === "true") { 
       loading = false;
       fetchData();

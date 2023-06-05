@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { auth } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -73,6 +73,12 @@ function Signup() {
             signupEmail, 
             signupPassword
           );
+        
+        // // FOR ASSIGNING USER'S IDENTIFIER
+        //   await updateProfile(auth.currentUser, {
+        //     displayName: "test",
+        //   });
+
           localStorage.setItem("isAuth", "true");
           localStorage.setItem("userEmail",user.email);     
           navigate("/");
