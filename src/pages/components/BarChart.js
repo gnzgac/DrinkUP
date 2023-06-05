@@ -23,7 +23,7 @@ const BarChart = () => {
     for (let i = 0; i < 7; i++) {
       get(child(dbRef, `testing/Days/${i}`)).then((snapshot) => {
         if (snapshot.exists()) {
-          setDate((Date) => [...Date,snapshot.val().date]);
+          setDate((Date) => [...Date,snapshot.val().date.slice(0,-5)]);
           setIntakePerDay((intakePerDay) => [...intakePerDay,snapshot.val().Intake]);
         } else {
           console.log("No data available");
