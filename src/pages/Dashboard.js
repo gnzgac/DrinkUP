@@ -176,7 +176,9 @@ function Dashboard() {
               <Typography variant="h6" color="text.secondary" marginLeft={3}>
                 {Math.trunc(intakeDay)} mL
               </Typography>
-              {CircularProgressWithLabel({value:(intakeDay/2500)*100})}
+              <CardContent align="center">
+                {CircularProgressWithLabel({value:(intakeDay/2500)*100})}
+              </CardContent>
             </CardContent>
           </CardActionArea>
         </Card>
