@@ -33,10 +33,12 @@ function Signup() {
     let navigate = useNavigate();
 
     const [signupEmail, setSignUpEmail] = useState("");
+    const [signupIdentifier, setIdentifier] = useState("");
     const [signupPassword, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const [EmailError, NewEmailError] = useState(false);
+    const [IdentifierError, NewIdentifierError] = useState(false);
     const [PasswordError, NewPasswordError] = useState(false);
     const [ConfirmPasswordError, NewConfirmPasswordError] = useState(false);
 
@@ -45,6 +47,7 @@ function Signup() {
     const [message, setMessage] = useState('') // Controls Message
 
     const [EmailHT, NewEmailHT] = useState("");
+    const [IdentifierHT, NewIdentifierHT] = useState("");
     const [PasswordHT, NewPasswordHT] = useState("");
     const [ConfirmPasswordHT, NewConfirmPasswordHT] = useState("");
 
@@ -117,7 +120,7 @@ function Signup() {
                             setInstant(false); 
                             setSignUpEmail(event.target.value);
                             if (event.target.value === "" || ! event.target.value.match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/)){
-                                NewEmailHT("Enter a valid email");
+                                NewEmailHT("Enter a valid email.");
                                 NewEmailError(true);
                             }
                             else{
@@ -126,6 +129,24 @@ function Signup() {
                             }
                             }}
                             error = {EmailError}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField type="ID" placeholder="productIdentifier" label="Product Identifier" variant="outlined" helperText = {IdentifierHT} fullWidth required 
+                            onChange={(event) => {
+                            setInstant(false); 
+                            setIdentifier(event.target.value);
+                            if (event.target.value === ""){
+                                NewIdentifierHT("Enter a valid product identifier.");
+                                NewIdentifierError(true);
+                            }
+                            else{
+                                NewIdentifierHT("")
+                                NewIdentifierError(false);
+                            }
+                            }}
+                            error = {IdentifierError}
                             />
                         </Grid>
     
@@ -172,7 +193,7 @@ function Signup() {
                             <Button type="submit" variant="contained" sx = {buttonStyle} fullWidth
                             onClick={e => {
                             e.preventDefault()
-                            if(signupEmail  && signupPassword && confirmPassword && !(EmailError  || PasswordError || ConfirmPasswordError)){
+                            if(signupEmail  && signupIdentifier && signupPassword && confirmPassword && !(EmailError || IdentifierError  || PasswordError || ConfirmPasswordError)){
                                 signUp()
                             }
                             else{
@@ -180,12 +201,16 @@ function Signup() {
                                 setSeverity("error")
                                 setInstant(true); 
                                 if (signupEmail === ""){
-                                NewEmailError(true);
-                                NewEmailHT("Enter a valid email");
+                                    NewEmailError(true);
+                                    NewEmailHT("Enter a valid email");
+                                }
+                                if (signupIdentifier === ""){
+                                    NewIdentifierError(true);
+                                    NewIdentifierHT("Enter a valid product identifier.");
                                 }
                                 if (signupPassword === ""){
-                                NewPasswordHT("Enter a password");
-                                NewPasswordError(true);
+                                    NewPasswordHT("Enter a password.");
+                                    NewPasswordError(true);
                                 }
                             }
                             }}
