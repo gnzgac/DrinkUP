@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import NavbarDefault from "./components/navbarDefault";
 import Box from '@mui/material/Box';
 import {CardActionArea, CircularProgress, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material';
+import { PersonAddDisabledSharp } from '@mui/icons-material';
 
 let theme = createTheme({
   typography: {
@@ -28,6 +29,7 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 var WeeklyTotal = 0;
 var loading = true
+var prodID
 
 function Dashboard() {
   // STYLES
@@ -66,7 +68,8 @@ function Dashboard() {
 
   async function fetchData() {
     //Intake for the Day
-    get(child(dbRef, `testing/Intake`)).then((snapshot) => {
+    prodID = localStorage.getItem("prodID")
+    get(child(dbRef, `${prodID}/Intake`)).then((snapshot) => {
       if (snapshot.exists()) {
         setIntakeDay(snapshot.val());
       } else {
@@ -78,7 +81,7 @@ function Dashboard() {
 
     //Weekly Data
     for (let i = 0; i < 7; i++) {
-      get(child(dbRef, `testing/Days/${i}`)).then((snapshot) => {
+      get(child(dbRef, `${prodID}/Days/${i}`)).then((snapshot) => {
         if (snapshot.exists()) {
           setIntakePerDay((intakePerDay) => [...intakePerDay,snapshot.val()]);
           WeeklyTotal = WeeklyTotal + snapshot.val().Intake
@@ -137,7 +140,7 @@ function Dashboard() {
             {/* TEXT */}
             <CardContent>
               <Typography gutterBottom variant="h4" component="div"  marginLeft={3}>
-                <b>Welcome, testing!</b>
+                <b>Welcome, {prodID}!</b>
               </Typography>
               <Typography variant="h6" color="text.secondary" marginLeft={3}>
                 You're doing great!

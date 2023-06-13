@@ -77,13 +77,15 @@ function Signup() {
             signupPassword
           );
         
-        // // FOR ASSIGNING USER'S IDENTIFIER
-        //   await updateProfile(auth.currentUser, {
-        //     displayName: "test",
-        //   });
+        // FOR ASSIGNING USER'S IDENTIFIER
+          await updateProfile(auth.currentUser, {
+            displayName: signupIdentifier,
+          });
 
+          const loggedUser = auth.currentUser
           localStorage.setItem("isAuth", "true");
-          localStorage.setItem("userEmail",user.email);     
+          localStorage.setItem("userEmail",loggedUser.email)
+          localStorage.setItem("prodID",loggedUser.displayName)
           navigate("/");
         } catch (error) {
           return error;

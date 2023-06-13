@@ -67,8 +67,11 @@ function Login() {
             loginEmail,
             loginPassword
           );
+          
+          const loggedUser = auth.currentUser
           localStorage.setItem("isAuth", "true");
-          localStorage.setItem("userEmail",loginEmail)
+          localStorage.setItem("userEmail",loggedUser.email)
+          localStorage.setItem("prodID",loggedUser.displayName)
           navigate("/");
         } catch (error) {
           return error;
