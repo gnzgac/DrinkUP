@@ -19,6 +19,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
+import DrinkUP_logo from '../images/logo_white_transparent.png';
+
 const NavbarDefault = (props) => {
   const [open, setOpen] = useState(false);
   const loggedInUser = localStorage.getItem("isAuth");
@@ -28,7 +30,7 @@ const NavbarDefault = (props) => {
       <Container sx={{ p:2 }} maxWidth="xl" className="font-link">
         <Toolbar>
             <IconButton size='small' edge='start' variant="contained" aria-label='logo'>
-                {/* <a href="/"><img src={droplet_logo} alt="logo" height="60" width="60"/></a> */}
+                <a href="/"><img src={DrinkUP_logo} alt="logo" height="50" width="50"/></a>
             </IconButton>
             
             <Typography 
