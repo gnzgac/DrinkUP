@@ -176,12 +176,14 @@ function Dashboard() {
               <Typography variant="h6" color="text.secondary" marginLeft={3}>
                 {Math.trunc(intakeDay)} mL
               </Typography>
-              <CardContent align="center">
+              {intakeDay>=2500?
+               <Typography variant="h6" color="text.secondary" marginLeft={3}>
+                You have reached the recommended water intake for the day!
+               </Typography>:
+               <CardContent align="center">
                 {CircularProgressWithLabel({value:(intakeDay/2500)*100})}
-              </CardContent>
-              <Typography variant="h6" color="text.secondary" marginLeft={3}>
-                {intakeDay>=2500? "You have reached the recommended water intake for the day!":""}
-              </Typography>
+               </CardContent>
+              }
             </CardContent>
           </CardActionArea>
         </Card>
@@ -199,12 +201,14 @@ function Dashboard() {
               <Typography variant="h6" color="text.secondary" marginLeft={3}>
               {Math.trunc(intakeWeek/7)} mL
               </Typography>
-              <CardContent align="center">
+              {intakeWeek>=17500?
+               <Typography variant="h6" color="text.secondary" marginLeft={3}>
+                You have reached the recommended water intake for the week!
+               </Typography>:
+               <CardContent align="center">
                 {CircularProgressWithLabel({value:(intakeWeek/(2500*7))*100})}
-              </CardContent>
-              <Typography variant="h6" color="text.secondary" marginLeft={3}>
-                {intakeWeek>=17500? "You have reached the recommended water intake for the week!":""}
-              </Typography>
+               </CardContent>
+              }
             </CardContent>
           </CardActionArea>
         </Card>
