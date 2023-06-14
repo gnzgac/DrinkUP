@@ -7,6 +7,8 @@ function Logout() {
 
     useEffect(()=>{
         localStorage.setItem("isAuth", "false");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("prodID");
 
         const auth = getAuth();
         signOut(auth).then(() => {
