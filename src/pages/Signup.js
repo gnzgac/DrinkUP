@@ -83,7 +83,7 @@ function Signup() {
           });
 
           const loggedUser = auth.currentUser
-          localStorage.setItem("isAuth", "true");
+          localStorage.setItem("isAuth", "true"); 
           localStorage.setItem("userEmail",loggedUser.email)
           localStorage.setItem("prodID",loggedUser.displayName)
           navigate("/");
@@ -135,7 +135,7 @@ function Signup() {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <TextField type="ID" placeholder="productIdentifier" label="Product Identifier" variant="outlined" helperText = {IdentifierHT} fullWidth required 
+                            <TextField type="ID" placeholder="Product Identifier" label="Product Identifier" variant="outlined" helperText = {IdentifierHT} fullWidth required 
                             onChange={(event) => {
                             setInstant(false); 
                             setIdentifier(event.target.value);
